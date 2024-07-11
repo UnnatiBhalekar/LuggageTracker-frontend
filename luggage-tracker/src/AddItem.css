@@ -1,0 +1,17 @@
+/* AddItem.css */
+
+.form-container{
+    text-align:center;
+    width: 50%;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+
+.btn-primary:hover {
+    background-color: #5a83eb;
+}
