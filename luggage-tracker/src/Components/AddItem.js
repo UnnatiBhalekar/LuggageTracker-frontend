@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { addItem } from './Services/endpoints';
+import { addItem } from '../Services/endpoints';
 import './AddItem.css';
 
 const AddItem = () => {
     const [formData, setFormData] = useState({
         item_name: '',
-        weight: 0,
+        weight: '',
         quantity: 'Choose...'
     });
 
@@ -23,14 +23,13 @@ const AddItem = () => {
             alert('Please select a quantity.');
             return;
         }
-        console.log(formData);
         try {
             await addItem(formData); // Calling the addItem function from endpoint.js
             alert('Item added successfully!');
             // Optionally, clear the form fields after successful submission
             setFormData({
                 item_name: '',
-                weight: 0,
+                weight: '',
                 quantity: 'Choose...'
             });
         } catch (error) {
@@ -40,14 +39,14 @@ const AddItem = () => {
     };
 
     return (
-        <div>
+        <div className="body">
             <form className="form-container" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="itemName">Item Name</label>
+                    <label htmlFor="item_name">Item Name</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="itemName"
+                        id="item_name"
                         value={formData.item_name}
                         onChange={handleChange}
                         placeholder="Enter Item Name"
@@ -55,11 +54,12 @@ const AddItem = () => {
                     <small id="itemHelp" className="form-text text-muted">Please enter the item name.</small>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="itemWeight">Item Weight</label>
+                    <label htmlFor="weight">Item Weight</label>
                     <input
-                        type="decimal"
+                        type="number"
                         className="form-control"
-                        id="itemWeight"
+                        id="weight"
+                        step="0.01"
                         value={formData.weight}
                         onChange={handleChange}
                         placeholder="Enter Item Weight"

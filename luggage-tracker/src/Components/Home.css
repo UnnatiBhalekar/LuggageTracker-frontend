@@ -1,0 +1,19 @@
+/* HomePage.css */
+.home-page {
+    background-image: url('/src/home_background.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    /* Full viewport height */
+    display: flex;
+    align-items: center;
+    /* Center content vertically */
+    justify-content: center;
+    /* Center content horizontally */
+}
+
+.container {
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+}

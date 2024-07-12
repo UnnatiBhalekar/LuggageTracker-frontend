@@ -1,0 +1,14 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.edit-button{
+    border-width: thin;
+    border-color:bisque;
+    border-radius: 8px;
+}
