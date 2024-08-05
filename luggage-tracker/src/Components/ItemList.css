@@ -12,3 +12,48 @@
     border-color:bisque;
     border-radius: 8px;
 }
+
+.delete-button{
+    margin-left: 1rem;
+    border-width: thin;
+    border-color:bisque;
+    border-radius: 8px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+    .table-responsive > .table > thead > tr > th,
+    .table-responsive > .table > tbody > tr > th,
+    .table-responsive > .table > tfoot > tr > th,
+    .table-responsive > .table > thead > tr > td,
+    .table-responsive > .table > tbody > tr > td,
+    .table-responsive > .table > tfoot > tr > td {
+        white-space: nowrap;
+    }
+}
+
+.save-button, .edit-button, .delete-button {
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+}
