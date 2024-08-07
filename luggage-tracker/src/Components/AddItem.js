@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addItem } from '../Services/endpoints';
 import './AddItem.css';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddItem = () => {
     const [formData, setFormData] = useState({
@@ -20,12 +22,12 @@ const AddItem = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.quantity === 'Choose...') {
-            alert('Please select a quantity.');
+            toast.error('Please select a quantity.');
             return;
         }
         try {
             await addItem(formData); // Calling the addItem function from endpoint.js
-            alert('Item added successfully!');
+            toast.success('Item added successfully!');
             // Optionally, clear the form fields after successful submission
             setFormData({
                 item_name: '',
@@ -34,12 +36,13 @@ const AddItem = () => {
             });
         } catch (error) {
             console.error("There was an error adding the item!", error);
-            alert('There was an error adding the item.');
+            toast.error('There was an error adding the item.');
         }
     };
 
     return (
         <div className="body">
+            <ToastContainer />
             <form className="form-container" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="item_name">Item Name</label>

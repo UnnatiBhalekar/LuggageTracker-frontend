@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './ItemList.css';
 import { viewItems, updateItems, deleteItem } from '../Services/endpoints';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 const ItemList = () => {
     const [items, setItems] = useState([]);
@@ -21,7 +24,7 @@ const ItemList = () => {
                 const response = await viewItems();
                 setItems(response.data);
             } catch (error) {
-                console.error('Error fetching items..');
+                toast.error('Error fetching items..');
             }
         }
 
@@ -51,70 +54,77 @@ const ItemList = () => {
             await updateItems(editItemData); // Call the updateItems function from endpoint.js
             setItems(items.map(item => (item.item_id === editItemData.item_id ? editItemData : item)));
             setEditMode(null);
+            toast.success('Item updated Successfully!');
         } catch (error) {
-            console.error('Error updating item', error);
+            toast.error('Error updating item', error);
         }
     };
 
     const handleDeleteClick = async (id) => {
-        try{
+        try {
             await deleteItem(id);
             setItems(items.filter(item => item.item_id !== id))
-        }catch (error) {
-            console.error('Error deleting item', error);
+            toast.success('Item Deleted Successfully');
+        } catch (error) {
+            toast.error('Error deleting item', error);
         }
     };
 
     return (
         <div className="table-container">
+            <ToastContainer />
             <div className="table-responsive">
-            <table className="table table-sm table-bordered table-hover">
-                <thead>
-                    <tr className="table-info">
-                        <th scope="col">Id</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map(item => (
-                        <tr key={item.item_id}>
-                            {editMode === item.item_id ? (
-                                <>
-                                    <td>{item.item_id}</td>
-                                    <td><input type="text" name="item_name" value={editItemData.item_name} onChange={handleInputChange} /></td>
-                                    <td><input type="number" name="weight" value={editItemData.weight} onChange={handleInputChange} /></td>
-                                    <td><input type="number" name="quantity" value={editItemData.quantity} onChange={handleInputChange} /></td>
-                                    <td>
-                                        <button className="save-button" onClick={handleSaveClick}>
-                                            <SaveIcon />
-                                        </button>
-                                    </td>
-                                </>
-                            ) : (
-                                <>
-                                    <th scope="row">{item.item_id}</th>
-                                    <td>{item.item_name}</td>
-                                    <td>{item.weight}</td>
-                                    <td>{item.quantity}</td>
-                                    <td>
-                                        <button className="edit-button" onClick={() => handleEditClick(item)}>
-                                            <EditIcon />
-                                        </button>
-                                        <button className='delete-button'onClick={() => handleDeleteClick(item.item_id)}>
-                                            <DeleteIcon />
-                                        </button>
-                                    </td>
-                                </>
-                            )}
+                <table className="table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr className="table-info">
+                            <th scope="col">Id</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Weight</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {items.map(item => (
+                            <tr key={item.item_id}>
+                                {editMode === item.item_id ? (
+                                    <>
+                                        <td>{item.item_id}</td>
+                                        <td><input type="text" name="item_name" value={editItemData.item_name} onChange={handleInputChange} /></td>
+                                        <td><input type="number" name="weight" value={editItemData.weight} onChange={handleInputChange} /></td>
+                                        <td><input type="number" name="quantity" value={editItemData.quantity} onChange={handleInputChange} /></td>
+                                        <td>
+                                            <button className="save-button" onClick={handleSaveClick}>
+                                                <SaveIcon />
+                                            </button>
+                                        </td>
+                                    </>
+                                ) : (
+                                    <>
+                                        <th scope="row">{item.item_id}</th>
+                                        <td>{item.item_name}</td>
+                                        <td>{item.weight}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>
+                                            <button className="edit-button" onClick={() => handleEditClick(item)}>
+                                                <EditIcon />
+                                            </button>
+                                            <button className='delete-button' onClick={() => handleDeleteClick(item.item_id)}>
+                                                <DeleteIcon />
+                                            </button>
+                                            <button class="add-button">
+                                                <AddIcon />
+                                            </button>
+
+                                        </td>
+                                    </>
+                                )}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            
+
         </div>
     )
 }

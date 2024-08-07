@@ -7,17 +7,25 @@
     padding-right: 100px;
 }
 
-.edit-button{
+.edit-button {
     border-width: thin;
-    border-color:bisque;
+    border-color: bisque;
     border-radius: 8px;
 }
 
-.delete-button{
+.delete-button {
     margin-left: 1rem;
     border-width: thin;
-    border-color:bisque;
+    border-color: bisque;
     border-radius: 8px;
+}
+
+.add-button {
+    margin-left: 1rem;
+    border-width: thin;
+    border-color: bisque;
+    border-radius: 8px;
+
 }
 
 .table-container {
@@ -40,17 +48,20 @@
 }
 
 @media screen and (max-width: 767px) {
-    .table-responsive > .table > thead > tr > th,
-    .table-responsive > .table > tbody > tr > th,
-    .table-responsive > .table > tfoot > tr > th,
-    .table-responsive > .table > thead > tr > td,
-    .table-responsive > .table > tbody > tr > td,
-    .table-responsive > .table > tfoot > tr > td {
+
+    .table-responsive>.table>thead>tr>th,
+    .table-responsive>.table>tbody>tr>th,
+    .table-responsive>.table>tfoot>tr>th,
+    .table-responsive>.table>thead>tr>td,
+    .table-responsive>.table>tbody>tr>td,
+    .table-responsive>.table>tfoot>tr>td {
         white-space: nowrap;
     }
 }
 
-.save-button, .edit-button, .delete-button {
+.save-button,
+.edit-button,
+.delete-button {
     cursor: pointer;
 }
 

@@ -1,15 +1,26 @@
 /* AddItem.css */
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Optional: Background color for better visibility */
+    
+}
+
 .form-container {
     text-align: center;
     width: 50%;
-    margin: auto;
+    background: #cff4fc; /* Optional: Background color for the form */
+    padding: 20px; /* Optional: Padding for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for better visibility */
+    border-radius: 8px; /* Optional: Rounded corners */
 }
 
 .form-group {
     margin-bottom: 15px;
     text-align: justify;
 }
-
 
 .btn-primary:hover {
     background-color: #5a83eb;

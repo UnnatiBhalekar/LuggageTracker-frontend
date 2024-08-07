@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Footer = () => {
+function Footer() {
   return (
-    <div>Footer</div>
+    <div>
+        <span className="text-muted">© 2024 Your Company. All rights reserved.</span>
+    </div>
   )
 }
 
