@@ -12,3 +12,8 @@
     font-weight: bolder;
 }
 
+.delete{
+    border-width: thin;
+    border-color: bisque;
+    border-radius: 8px;
+}

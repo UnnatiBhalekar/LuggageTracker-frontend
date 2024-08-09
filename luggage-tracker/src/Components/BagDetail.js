@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { itemsInBag, weightCal } from '../Services/endpoints';
 import { ToastContainer, toast } from 'react-toastify';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import 'react-toastify/dist/ReactToastify.css';
 import './BagDetails.css';
 
@@ -22,7 +23,7 @@ const BagDetails = () => {
             }
         };
 
-        const fetchSpaceDetails = async() => {
+        const fetchSpaceDetails = async () => {
             try {
                 const spaceResponse = await itemsInBag(id);
                 setBagDetails(spaceResponse.data);
@@ -46,6 +47,7 @@ const BagDetails = () => {
                         <tr className='table-info'>
                             <th scope="col">Item Name</th>
                             <th scope="col">Weight</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +55,11 @@ const BagDetails = () => {
                             <tr key={index}>
                                 <td>{item.itemName}</td>
                                 <td>{item.weight}</td>
+                                <td>
+                                    <button className="delete">
+                                        <DeleteOutlineIcon />
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
