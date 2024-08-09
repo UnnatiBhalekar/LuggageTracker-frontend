@@ -1,6 +1,6 @@
 /* HomePage.css */
 .home-page {
-    background-image: url('/src/home_background.jpg');
+    background-color: #cff4fc;
     background-size: cover;
     background-position: center;
     width: 100%;

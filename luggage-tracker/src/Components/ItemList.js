@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './ItemList.css';
-import { viewItems, updateItems, deleteItem } from '../Services/endpoints';
+import { viewItems, updateItems, deleteItem, addItemToBag } from '../Services/endpoints';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const ItemList = () => {
     const [items, setItems] = useState([]);
@@ -70,6 +71,15 @@ const ItemList = () => {
         }
     };
 
+    const handleAddItemToBagClick = async (itemId, bagId) => {
+        try {
+            await addItemToBag(itemId, bagId);
+            toast.success(`Item Added Successfully to Bag ${bagId}`);
+        } catch (error) {
+            toast.error(`Error adding item in Bag ${bagId}`, error);
+        }
+    };
+
     return (
         <div className="table-container">
             <ToastContainer />
@@ -112,9 +122,17 @@ const ItemList = () => {
                                             <button className='delete-button' onClick={() => handleDeleteClick(item.item_id)}>
                                                 <DeleteIcon />
                                             </button>
-                                            <button class="add-button">
-                                                <AddIcon />
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class=" add-button btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Add Item in Bag
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item" type="button" onClick={() => handleAddItemToBagClick(item.item_id, 1)}>Luggage Bag 1</button>
+                                                    <button class="dropdown-item" type="button" onClick={() => handleAddItemToBagClick(item.item_id, 2)}>Luggage Bag 2</button>
+                                                    <button class="dropdown-item" type="button" onClick={() => handleAddItemToBagClick(item.item_id, 3)}>Cabin Bag</button>
+                                                    <div class="dropdown-divider"></div>
+                                                </div>
+                                            </div>
 
                                         </td>
                                     </>

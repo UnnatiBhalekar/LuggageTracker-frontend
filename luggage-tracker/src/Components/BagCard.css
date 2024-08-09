@@ -1,0 +1,17 @@
+
+.body-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #cff4fc; 
+    
+}
+
+.card{
+    width: 18rem;
+}
+
+.btn-primary:hover {
+    background-color: #5a83eb;
+}

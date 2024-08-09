@@ -1,0 +1,14 @@
+.body-details {
+    display: flex;
+    height: 100vh;
+    /* background-color: #cff4fc; */
+}
+
+.detail{
+    padding: 2%;
+}
+
+.card-header{
+    font-weight: bolder;
+}
+
