@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { itemsInBag, weightCal } from '../Services/endpoints';
+import { itemsInBag, weightCal, deleteItemFromBag } from '../Services/endpoints';
 import { ToastContainer, toast } from 'react-toastify';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,6 +38,25 @@ const BagDetails = () => {
         fetchSpaceDetails();
     }, [id]);
 
+     // Function to handle item deletion
+     const handleDelete = async (itemName) => {
+        try {
+            await deleteItemFromBag(id, itemName); // Call the delete API
+            toast.success('Item deleted successfully');
+
+            // Update the UI by removing the deleted item from the state
+            setBagDetails(prevBagDetails =>
+                prevBagDetails.filter(item => item.itemName !== itemName)
+            );
+
+            // Optionally, refetch the bag's weight and available space after deletion
+            const bagResponse = await weightCal(id);
+            setSpaceDetails(bagResponse.data);
+        } catch (error) {
+            toast.error('Error deleting the item');
+        }
+    };
+
     return (
         <div className='body-details'>
             <ToastContainer />
@@ -56,7 +75,7 @@ const BagDetails = () => {
                                 <td>{item.itemName}</td>
                                 <td>{item.weight}</td>
                                 <td>
-                                    <button className="delete">
+                                    <button className="delete" onClick={()=> handleDelete(item.itemName)}>
                                         <DeleteOutlineIcon />
                                     </button>
                                 </td>

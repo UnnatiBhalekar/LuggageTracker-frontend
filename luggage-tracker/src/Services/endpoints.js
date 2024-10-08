@@ -10,3 +10,4 @@ export const getBagById = (id) => axios.get(`${API_URL}/bag/${id}`);
 export const addItemToBag = (itemId, bagId) => axios.post(`${API_URL}/add/${bagId}/${itemId}`);
 export const itemsInBag = (id) => axios.get(`${API_URL}/bag/items/${id}`);
 export const weightCal = (id) => axios.get(`${API_URL}/weight/space/${id}`);
+export const deleteItemFromBag = (bagId, itemName) => axios.delete(`${API_URL}/${bagId}/items/${itemName}`);
